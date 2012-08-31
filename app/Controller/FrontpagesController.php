@@ -9,13 +9,13 @@ class FrontpagesController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		
 		$this->Auth->allow('index');
 		$this->set('title_for_layout', '課程網頁');
 	}
 	
 	public function index() {
-		
+		$this->set('userData', $this->Auth->user());
+		$this->set('loggedIn', $this->Auth->loggedIn());
 	}
 	
 }

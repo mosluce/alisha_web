@@ -1,0 +1,30 @@
+2012-08-30 22:30:56 Error: Fatal Error (4): syntax error, unexpected T_STRING in [/Users/mosluce/Documents/Workspace/alisha_web/app/Config/routes.php, line 40]
+2012-08-30 22:30:56 Error: [FatalErrorException] syntax error, unexpected T_STRING
+#0 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Error/ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/Users/mosluce/...', 40)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/Users/mosluce/...', 40, Array)
+#2 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/Users/mosluce/...', 40, Array)
+#3 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-08-30 22:34:09 Error: Fatal Error (1): Call to a member function allow() on a non-object in [/Users/mosluce/Documents/Workspace/alisha_web/app/Controller/FrontpagesController.php, line 13]
+2012-08-30 22:34:09 Error: [FatalErrorException] Call to a member function allow() on a non-object
+#0 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Error/ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/Users/mosluce/...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/Users/mosluce/...', 13, Array)
+#2 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/Users/mosluce/...', 13, Array)
+#3 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-08-31 10:30:02 Error: [MissingViewException] View file "/Users/mosluce/Documents/Workspace/alisha_web/app/View/Users/register.ctp" is missing.
+#0 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/View/View.php(472): View->_getViewFileName(NULL)
+#1 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Controller/Controller.php(957): View->render(NULL, NULL)
+#2 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Routing/Dispatcher.php(193): Controller->render()
+#3 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /Users/mosluce/Documents/Workspace/alisha_web/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-08-31 10:30:24 Error: [MissingViewException] View file "/Users/mosluce/Documents/Workspace/alisha_web/app/View/Users/register.ctp" is missing.
+#0 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/View/View.php(472): View->_getViewFileName(NULL)
+#1 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Controller/Controller.php(957): View->render(NULL, NULL)
+#2 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Routing/Dispatcher.php(193): Controller->render()
+#3 /Users/mosluce/Documents/Workspace/alisha_web/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /Users/mosluce/Documents/Workspace/alisha_web/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
