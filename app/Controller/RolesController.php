@@ -5,7 +5,12 @@ App::uses('AppController', 'Controller');
  *
  */
 class RolesController extends AppController {
-	
-	
-	//public $scaffold;
+
+/**
+ * Scaffold
+ *
+ * @var mixed
+ */
+	public $scaffold;
+
 }

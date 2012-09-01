@@ -35,11 +35,12 @@ class AppController extends Controller {
 	public $components = array('Auth', 'Session', 'Cookie');
 	
 	function beforeFilter() {
-		Security::setHash('md5');
-		
 		$this->Auth->authenticate = array('Form' => array(
 			'fields' => array('username' => 'email')
 		));
-		$this->Auth->allow('*');
+	}
+	
+	public function isAdmin() {
+		return ($this->Auth->user('role_id')==1 || $this->Auth->user('role_id')==99);
 	}
 }
