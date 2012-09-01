@@ -59,7 +59,9 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array(
+	public $default = null;
+	
+	public $dev = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
@@ -70,4 +72,34 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 		'port' => 8889
 	);
+
+	public $prod = array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'localhost',
+			'login' => 'c1_alisha',
+			'password' => 'h89270as',
+			'database' => 'c1_alisha',
+			'prefix' => '',
+			'encoding' => 'utf8',
+	);
+	
+	function __construct ()
+	{
+		//check to see if server name is set (thanks Frank)
+		if(isset($_SERVER['SERVER_NAME'])){
+			switch($_SERVER['SERVER_NAME']){
+				case 'alisha.dev':
+					$this->default = $this->dev;
+					break;
+				case 'alisha.ccmos.tw':
+					$this->default = $this->prod;
+					break;
+			}
+		}
+		else // we are likely baking, use our local db
+		{
+			$this->default = $this->dev;
+		}
+	}
 }

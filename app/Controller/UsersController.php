@@ -43,7 +43,7 @@ class UsersController extends AppController {
 	
 	public function manage() {
 		if(parent::isAdmin()) {
-			$this->set('users', $this->User->find('all'));
+			$this->set('users', $this->User->query("SELECT * FROM users AS User WHERE role_id!='99'"));
 		} else {
 			$this->Session->setFlash('This page is not allowed to you');
 			$this->redirect('/');
@@ -61,7 +61,7 @@ class UsersController extends AppController {
 		} else {
 			if($this->User->save($this->request->data)) {
 				$this->Session->setFlash('User\'s data is updated');
-// 				$this->redirect($this->referer());
+				$this->redirect('/');
 			} else {
 				$this->Session->setFlash('Failed to update user\'s data.');
 			}
@@ -69,13 +69,19 @@ class UsersController extends AppController {
 	}
 	
 	function delete($id) {
-		if($this->request->is('get')) {
-			throw new MethodNotAllowedException();
-		} else {
-			if($this->Post->delete($id)) {
-				$this->Session->setFlash('The post with id: ' . $id . ' has been deleted.');
-// 				$this->redirect($this->referer());
+		if(parent::isAdmin()) {
+			if($this->request->is('get')) {
+				throw new MethodNotAllowedException();
+			} else {
+				if($this->User->delete($id)) {
+					$this->Session->setFlash('The user with id: ' . $id . ' has been deleted.');
+				} else {
+					$this->Session->setFlash('Failed to delete user');
+				}
+				$this->redirect($this->referer());
 			}
+		} else {
+			$this->redirect($this->referer());
 		}
 	}
 	

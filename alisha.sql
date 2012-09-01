@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : root_conn
+ Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50525
  Source Host           : localhost
@@ -11,7 +11,7 @@
  Target Server Version : 50525
  File Encoding         : utf-8
 
- Date: 08/30/2012 18:03:08 PM
+ Date: 09/01/2012 12:05:15 PM
 */
 
 SET NAMES utf8;
@@ -49,7 +49,7 @@ CREATE TABLE `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `roles`
@@ -91,14 +91,15 @@ CREATE TABLE `users` (
   `password` varchar(50) NOT NULL,
   `firstname` varchar(25) NOT NULL,
   `lastname` varchar(25) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('1', '99', 'admin@ccmos.tw', 'h89270as', 'MOS', 'CHEN');
+INSERT INTO `users` VALUES ('1', '99', 'admin@ccmos.tw', '81ed70974448230148c20872a4b86a9878ca76ba', 'MOS', 'CHEN', '1'), ('18', '3', 'mos@ccmos.tw', '6e23a72078a411cd1c46dca3da33702436082d02', 'Mos', 'Yo', '0');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

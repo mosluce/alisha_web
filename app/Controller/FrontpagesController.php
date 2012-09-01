@@ -10,7 +10,7 @@ class FrontpagesController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('index');
-		$this->set('title_for_layout', '課程網頁');
+		$this->set('title_for_layout', 'Alisha.ccmos.tw');
 	}
 	
 	public function index() {
