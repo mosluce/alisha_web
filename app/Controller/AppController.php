@@ -38,6 +38,9 @@ class AppController extends Controller {
 		$this->Auth->authenticate = array('Form' => array(
 			'fields' => array('username' => 'email')
 		));
+		
+		$this->Auth->loginRedirect = array('controller'=>'frontpages', 'action'=>'index');
+		$this->Auth->logoutRedirect = array('controller'=>'frontpages', 'action'=>'index');
 	}
 	
 	public function isAdmin() {
