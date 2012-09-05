@@ -29,7 +29,7 @@ class AdminpagesController extends AppController {
 	public function course_add() {
 		if ($this->request->is('post')) {
 			if ($this->Course->save($this->request->data)) {
-				$this->Session->setFlash('Success!');
+				$this->Session->setFlash('Successed');
 				$this->redirect(array('action'=>'course_list'));
 			} else {
 				$this->Session->setFlash('Failed');
@@ -50,7 +50,7 @@ class AdminpagesController extends AppController {
 			$this->request->data = $this->Course->read();
 		} else {
 			if ($this->Course->save($this->request->data)) {
-				$this->Session->setFlash('Success!');
+				$this->Session->setFlash('Successed');
 				$this->redirect(array('action'=>'course_list'));
 			} else {
 				$this->Session->setFlash('Failed');

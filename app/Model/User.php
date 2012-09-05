@@ -8,15 +8,21 @@ class User extends AppModel {
 	);
 	
 	public $validate = array(
-		'email'=>'email',
+		'email'=>array(
+			'rule'=>'email',
+			'message'=>'Must be an email format.'
+		),
 		'password'=>array(
-			'rule' => array('minLength', 8)
+			'rule' => array('minLength', 8),
+			'message' => 'Must be more than 8 chars.'
 		),
 		'firstname'=>array(
-			'rule' => array('minLength', 1)
+			'rule' => array('minLength', 1),
+			'message' => 'Not empty.'
 		),
 		'lastname'=>array(
-			'rule' => array('minLength', 1)
+			'rule' => array('minLength', 1),
+			'message' => 'Not empty.'
 		)
 	);
 	
