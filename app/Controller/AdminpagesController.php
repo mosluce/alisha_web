@@ -1,7 +1,7 @@
 <?php
 class AdminpagesController extends AppController {
 	
-	public $uses = array('User', 'Course');
+	public $uses = array('User', 'Course', 'Role');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -23,19 +23,66 @@ class AdminpagesController extends AppController {
 	}
 	
 	public function course_list() {
-		$courses = $this->Course->query("SELECT * FROM courses AS Course WHERE");
-		$this->set('$courses', $courses);
+		$this->set('courses', $this->Course->find('all'));
+	}
+	
+	public function course_add() {
+		if ($this->request->is('post')) {
+			if ($this->Course->save($this->request->data)) {
+				$this->Session->setFlash('Success!');
+				$this->redirect(array('action'=>'course_list'));
+			} else {
+				$this->Session->setFlash('Failed');
+			}
+		}
+		
+		$conditions = array('role_id != ' => 3);
+		$this->set('teacherlist', $this->User->find('list',
+				array(
+						'conditions'=>$conditions,
+						'fields'=>array('User.id', 'User.fullname')
+				)));
+	}
+	
+	public function course_edit($id=null) {
+		$this->Course->id = $id;
+		if ($this->request->is('get')) {
+			$this->request->data = $this->Course->read();
+		} else {
+			if ($this->Course->save($this->request->data)) {
+				$this->Session->setFlash('Success!');
+				$this->redirect(array('action'=>'course_list'));
+			} else {
+				$this->Session->setFlash('Failed');
+			}
+		}
+		
+		$conditions = array('role_id != ' => 3);
+		$this->set('teacherlist', $this->User->find('list',
+				array(
+						'conditions'=>$conditions,
+						'fields'=>array('User.id', 'User.fullname')
+				)));
+	}
+	
+	public function course_delete($id) {
+		
 	}
 	
 	public function user_add() {
 		if($this->request->is('post')) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('Created');
-				$this->redirect('/adminpages');
+				$this->redirect(array('action' => 'user_list'));
 			} else {
 				$this->Session->setFlash('Failed');
 			}
-		}
+		} 
+		
+		$conditions = array(
+			'id !='=>99
+		);
+		$this->set('rolelist', $this->Role->find('list', array('conditions' => $conditions)));
 	}
 	
 	public function user_edit($id=null) {
@@ -45,14 +92,26 @@ class AdminpagesController extends AppController {
 		} else {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('Updated');
-				$this->redirect('/adminpages');
+				$this->redirect(array('action' => 'user_list'));
 			} else {
 				$this->Session->setFlash('Failed');
 			}
 		}
+		
+		$conditions = array(
+				'id !='=>99
+		);
+		$this->set('rolelist', $this->Role->find('list', array('conditions' => $conditions)));
 	}
 	
-	public function user_delete() {
+	public function user_delete($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
 		
+		if ($this->User->delete($id)) {
+			$this->Session->setFlash('Deleted');
+			$this->redirect(array('action' => 'user_list'));
+		}
 	}
 }

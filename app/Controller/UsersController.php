@@ -7,10 +7,12 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
-		if ($this->Auth->login()) {
-			$this->redirect($this->Auth->redirect());
-		} else {
-			$this->Session->setFlash('Login Failed');
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->redirect($this->Auth->redirect());
+			} else {
+				$this->Session->setFlash('Login Failed');
+			}
 		}
 	}
 	

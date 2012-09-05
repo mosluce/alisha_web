@@ -1,4 +1,8 @@
 ----------------- <br />
+<?php 
+echo $this->Html->link('Back', array('action'=>'index'));
+?>
+<br />----------------- <br />
 <?php
 echo $this->Html->link('New User', array('action'=>'user_add'));
 ?>
