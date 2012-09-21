@@ -161,6 +161,10 @@ class AdminpagesController extends AppController {
 	
 	function fileFactory($file) {
 		if($file['error'] == 0) {
+			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads')) {
+				mkdir($_SERVER['DOCUMENT_ROOT'] . '/uploads');
+			}
+			
 			$filesplit = preg_split("/\./", $file['name']);
 			$ext = $filesplit[count($filesplit) - 1];
 			$savename = $this->Auth->user('id') . '_' . time() . '.' . $ext;
