@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : root
+ Source Server         : alisha.ccmos.tw
  Source Server Type    : MySQL
- Source Server Version : 50525
- Source Host           : localhost
- Source Database       : alisha
+ Source Server Version : 50524
+ Source Host           : alisha.ccmos.tw
+ Source Database       : c1_alisha
 
  Target Server Type    : MySQL
- Target Server Version : 50525
+ Target Server Version : 50524
  File Encoding         : utf-8
 
- Date: 09/19/2012 21:13:49 PM
+ Date: 09/22/2012 03:13:23 AM
 */
 
 SET NAMES utf8;
@@ -33,6 +33,20 @@ CREATE TABLE `academics` (
 BEGIN;
 INSERT INTO `academics` VALUES ('1', '99'), ('2', '100'), ('3', '101');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `course_files`
+-- ----------------------------
+DROP TABLE IF EXISTS `course_files`;
+CREATE TABLE `course_files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `filepath` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `filetype` varchar(255) NOT NULL DEFAULT 'application/octet-stream',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `course_times`
@@ -124,7 +138,7 @@ CREATE TABLE `users` (
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('1', '99', 'admin@ccmos.tw', '6e23a72078a411cd1c46dca3da33702436082d02', 'MOS CHEN', '管理員', '1'), ('21', '3', 'alisha.upc@gmail.com', '757383005bfa5e108be2b199a9adcbd39143d4b1', 'Alisha Jiang', '', '0'), ('22', '2', 'pray4taiwan@yahoo.com', '757383005bfa5e108be2b199a9adcbd39143d4b1', 'Chris Bracken', '', '0'), ('23', '2', 'ceagogo@gmail.com', '625ab5de98211498b0e5ae88439b749130a6f42e', 'David Chang', '', '0'), ('24', '2', 'ischingli@gmail.com', '625ab5de98211498b0e5ae88439b749130a6f42e', 'Chingli Li', '', '0'), ('25', '2', '3a178380@gmail.com', '625ab5de98211498b0e5ae88439b749130a6f42e', 'Chinbiao Jan', '', '0');
+INSERT INTO `users` VALUES ('1', '99', 'admin@ccmos.tw', '6e23a72078a411cd1c46dca3da33702436082d02', 'MOS CHEN', '管理員', '1'), ('21', '3', 'alisha.upc@gmail.com', '117728a35adf7f086b1fed8a5c06fe755e2b3c3e', 'Alisha Jiang', '江曉霜', '0'), ('22', '2', 'pray4taiwan@yahoo.com', '9a0fe48f4f52fcef0e173e905d4a4013d4170466', 'Chris Bracken', '博凱斯牧師', '0'), ('23', '2', 'ceagogo@gmail.com', '757383005bfa5e108be2b199a9adcbd39143d4b1', 'David Chang', '張希禹副牧師', '0'), ('24', '2', 'ischingli@gmail.com', 'a2e7ee2dc19586604078d66a2be79a30ecb2bb57', 'Chingli Li', '力靜莉傳道', '0'), ('25', '2', '3a178380@gmail.com', '757383005bfa5e108be2b199a9adcbd39143d4b1', 'Chinbiao Jan', '詹清標牧師', '0');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

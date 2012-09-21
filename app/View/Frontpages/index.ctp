@@ -5,11 +5,7 @@
 <?php if ($loggedIn):?>
 <p>
 Login User &gt; 
-<?php 
-echo $userData['firstname'];
-echo ' ';
-echo $userData['lastname'];
-?>
+<?php echo $userData['enname']; ?> ( <?php echo $userData['twname']; ?> )
 </p>
 <?php endif;?>
 

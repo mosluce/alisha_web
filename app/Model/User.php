@@ -4,7 +4,7 @@ class User extends AppModel {
 	public $belongsTo = 'Role';
 	
 	public $virtualFields = array(
-		'fullname'=> 'CONCAT(User.firstname, " ", User.lastname)'
+		'mixname'=> 'CONCAT(User.enname, "-", User.twname)'
 	);
 	
 	public $validate = array(
@@ -16,11 +16,7 @@ class User extends AppModel {
 			'rule' => array('minLength', 8),
 			'message' => 'Must be more than 8 chars.'
 		),
-		'firstname'=>array(
-			'rule' => array('minLength', 1),
-			'message' => 'Not empty.'
-		),
-		'lastname'=>array(
+		'enname'=>array(
 			'rule' => array('minLength', 1),
 			'message' => 'Not empty.'
 		)

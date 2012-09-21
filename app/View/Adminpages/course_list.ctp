@@ -10,25 +10,31 @@ echo $this->Html->link('New Course', array('action'=>'course_add'));
 <table>
   <tr>
   	<th>id</th>
+  	<th>Academic Year</th>
     <th>Course Name</th>
     <th>Teacher Name</th>
+    <th>Files</th>
     <th>Time List</th>
-    <th>Planning</th>
     <th>Actions</th>
   </tr>
   <?php foreach ($courses as $course):?>
   <tr>
   	<td><?php echo $course['Course']['id']?></td>
-    <td><?php echo $course['Course']['name']?></td>
-    <td><?php echo $course['User']['fullname']?></td>
-    <td>Working...</td>
+  	<td><?php echo $course['Academic']['academic_num']?></td>
+    <td><?php echo str_replace('-', '<br />', $course['Course']['mixname'])?></td>
+    <td><?php echo str_replace('-', '<br />', $course['User']['mixname'])?></td>
+    <td>【<?php echo $this->Html->link('File Manager', array('action'=>'course_file_edit', $course['Course']['id']))?>】
+    </td>
     <td>
-    	Working...
-    	<?php //echo $this->Html->link('Go', array('action'=>'course_plan', $course['Course']['id'])); ?>
+    	【Planning】
+    	<br />
+    	---------------
+    	<br />
+    	Working... 
     </td>
     <td>
     	<?php echo $this->Html->link('Edit', array('action'=>'course_edit', $course['Course']['id'])); ?>
-    	<?php echo $this->Form->postLink('Delete', array('action'=>'course_delete', $course['Course']['id']), array('confirm'=>'Are You Sure?')); ?>
+    	[Open/Close]
     </td>
   </tr>
   <?php endforeach;?>

@@ -1,7 +1,7 @@
 <?php
 class AdminpagesController extends AppController {
 	
-	public $uses = array('User', 'Course', 'Role');
+	public $uses = array('User', 'Course', 'Role', 'CourseFile', 'Academic');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -40,7 +40,7 @@ class AdminpagesController extends AppController {
 		$this->set('teacherlist', $this->User->find('list',
 				array(
 						'conditions'=>$conditions,
-						'fields'=>array('User.id', 'User.fullname')
+						'fields'=>array('User.id', 'User.mixname')
 				)));
 	}
 	
@@ -61,12 +61,13 @@ class AdminpagesController extends AppController {
 		$this->set('teacherlist', $this->User->find('list',
 				array(
 						'conditions'=>$conditions,
-						'fields'=>array('User.id', 'User.fullname')
+						'fields'=>array('User.id', 'User.mixname')
 				)));
-	}
-	
-	public function course_delete($id) {
 		
+		$this->set('academiclist', $this->Academic->find('list', 
+				array(
+						'fields'=>array('Academic.id', 'Academic.academic_num')
+				)));
 	}
 	
 	public function user_add() {
@@ -112,6 +113,64 @@ class AdminpagesController extends AppController {
 		if ($this->User->delete($id)) {
 			$this->Session->setFlash('Deleted');
 			$this->redirect(array('action' => 'user_list'));
+		}
+	}
+	
+	public function course_file_edit($course_id) {
+		if($this->request->is('post')) {
+			$data = $this->request->data;
+			$filedata = $this->fileFactory($data['CourseFile']['submittedfile']);
+			if($filedata != '') {
+				$data['CourseFile']['course_id'] = $course_id;
+				$data['CourseFile']['filename'] = $filedata['filename'];
+				$data['CourseFile']['filepath'] = $filedata['filepath'];
+				$data['CourseFile']['filetype'] = $filedata['filetype'];
+				
+				if($this->CourseFile->save($data)) {
+					$this->Session->setFlash('Uploaded');
+					$this->redirect($this->referer());
+				} else {
+					$this->Session->setFlash('Failed');
+				}
+			} else {
+				$this->Session->setFlash('File is invalid');
+			}
+		}
+		
+		$files = array();
+		$files = $this->CourseFile->find('all', array('conditions'=>array('CourseFile.course_id' => $course_id)));
+		$this->set('files', $files);
+	}
+	
+	public function course_file_delete($id) {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		
+		//讀取資料預備刪除
+		$this->CourseFile->id = $id;
+		$filedata = $this->CourseFile->read();
+		$filepath = $filedata['CourseFile']['filepath'];
+		
+		if ($this->CourseFile->delete($id)) {
+			unlink($filepath);
+			$this->Session->setFlash('Deleted');
+			$this->redirect($this->referer());
+		}
+	}
+	
+	function fileFactory($file) {
+		if($file['error'] == 0) {
+			$filesplit = preg_split("/\./", $file['name']);
+			$ext = $filesplit[count($filesplit) - 1];
+			$savename = $this->Auth->user('id') . '_' . time() . '.' . $ext;
+			$savepath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $savename;
+			move_uploaded_file($file['tmp_name'], $savepath);
+			
+			$filedata = array('filename' => $file['name'], 'filepath'=>$savepath, 'filetype'=>$file['type']);
+			return $filedata;
+		} else {
+			return '';
 		}
 	}
 }

@@ -11,8 +11,7 @@ echo $this->Html->link('New User', array('action'=>'user_add'));
 	<tr>
 		<th>id</th>
 		<th>Email/Account</th>
-		<th>First Name</th>
-		<th>Last Name</th>
+		<th>Name</th>
 		<th>Role</th>
 		<th>Actions</th>
 	</tr>
@@ -20,8 +19,11 @@ echo $this->Html->link('New User', array('action'=>'user_add'));
 	<tr>
 		<td><?php echo $user['User']['id']?></td>
 		<td><?php echo $user['User']['email']?></td>
-		<td><?php echo $user['User']['firstname']?></td>
-		<td><?php echo $user['User']['lastname']?></td>
+		<td>
+			<?php echo $user['User']['enname']?>
+			<br />
+			<?php echo $user['User']['twname']?>
+		</td>
 		<td><?php echo $user['Role']['name']?></td>
 		<td>
 			<?php echo $this->Html->link('Edit', array('action'=>'user_edit', $user['User']['id']))?>

@@ -1,7 +1,11 @@
 <?php
 class Course extends AppModel{
 	
-	public $belongsTo = 'User';
+	public $belongsTo = array('User', 'Academic');
+	
+	public $virtualFields = array(
+			'mixname'=> 'CONCAT(Course.name, "-", Course.name_tw)'
+	);
 	
 	public $validate = array(
 		'name'=>array(

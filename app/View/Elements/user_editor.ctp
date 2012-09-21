@@ -2,8 +2,8 @@
 echo $this->Form->create('User');
 echo $this->Form->input('email');
 echo $this->Form->input('password');
-echo $this->Form->input('firstname');
-echo $this->Form->input('lastname');
+echo $this->Form->input('enname', array('label'=>'Name'));
+echo $this->Form->input('twname', array('label'=>'中文姓名'));
 
 if(preg_match('/admin_/', $mode) == 1) {
 	echo $this->Form->input('role_id', array('options'=>$rolelist, 'default'=>3));
