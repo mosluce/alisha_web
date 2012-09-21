@@ -159,6 +159,14 @@ class AdminpagesController extends AppController {
 		}
 	}
 	
+	public function course_status_sw($id) {
+		$this->Course->id = $id;
+		$course = $this->Course->read();
+		$course['Course']['active'] = abs($course['Course']['active'] - 1);
+		$this->Course->save($course);
+		$this->redirect($this->referer());
+	}
+	
 	function fileFactory($file) {
 		if($file['error'] == 0) {
 			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads')) {

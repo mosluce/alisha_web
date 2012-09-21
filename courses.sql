@@ -11,7 +11,7 @@
  Target Server Version : 50525
  File Encoding         : utf-8
 
- Date: 09/22/2012 03:28:03 AM
+ Date: 09/22/2012 03:52:19 AM
 */
 
 SET NAMES utf8;
@@ -27,6 +27,7 @@ CREATE TABLE `courses` (
   `academic_id` int(11) NOT NULL DEFAULT '2',
   `name` varchar(100) NOT NULL,
   `name_tw` varchar(255) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -34,7 +35,7 @@ CREATE TABLE `courses` (
 --  Records of `courses`
 -- ----------------------------
 BEGIN;
-INSERT INTO `courses` VALUES ('1', '22', '1', 'Hermeneutics', ''), ('2', '25', '1', 'Bible Survey', ''), ('3', '24', '1', 'World Missions', ''), ('4', '23', '1', 'Apostolic Doctrine II-The New Birth', '');
+INSERT INTO `courses` VALUES ('1', '22', '1', 'Hermeneutics', '', '1'), ('2', '25', '1', 'Bible Survey', '', '1'), ('3', '24', '1', 'World Missions', '', '1'), ('4', '23', '1', 'Apostolic Doctrine II-The New Birth', '', '1');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

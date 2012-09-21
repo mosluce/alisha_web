@@ -91,9 +91,11 @@ class DATABASE_CONFIG {
 			switch($_SERVER['SERVER_NAME']){
 				case 'alisha.dev':
 					$this->default = $this->dev;
+					Configure::write('debug', 2);
 					break;
 				case 'alisha.ccmos.tw':
 					$this->default = $this->prod;
+					Configure::write('debug', 0);
 					break;
 			}
 		}

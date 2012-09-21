@@ -21,7 +21,20 @@ echo $this->Html->link('New Course', array('action'=>'course_add'));
   <tr>
   	<td><?php echo $course['Course']['id']?></td>
   	<td><?php echo $course['Academic']['academic_num']?></td>
-    <td><?php echo str_replace('-', '<br />', $course['Course']['mixname'])?></td>
+    <td>
+    	<p>
+    	<?php if($course['Course']['active'] == 1):?>
+    		【<span style="color: green">
+    			OPEN<?php echo $this->Html->link(' -> CLOSE', array('action'=>'course_status_sw', $course['Course']['id']))?>
+    		</span>】
+    	<?php else:?>
+    		【<span style="color: red">
+    			CLOSE<?php echo $this->Html->link(' -> OPEN', array('action'=>'course_status_sw', $course['Course']['id']))?>
+    		</span>】
+    	<?php endif;?>
+    	</p>
+    	<?php echo str_replace('-', '<br />', $course['Course']['mixname'])?>
+    </td>
     <td><?php echo str_replace('-', '<br />', $course['User']['mixname'])?></td>
     <td>【<?php echo $this->Html->link('File Manager', array('action'=>'course_file_edit', $course['Course']['id']))?>】
     </td>
@@ -34,7 +47,6 @@ echo $this->Html->link('New Course', array('action'=>'course_add'));
     </td>
     <td>
     	<?php echo $this->Html->link('Edit', array('action'=>'course_edit', $course['Course']['id'])); ?>
-    	[Open/Close]
     </td>
   </tr>
   <?php endforeach;?>
