@@ -137,8 +137,9 @@ class AdminpagesController extends AppController {
 			}
 		}
 		
+		$this->paginate = array('limit'=>3, 'conditions'=>array('CourseFile.course_id' => $course_id));
 		$files = array();
-		$files = $this->CourseFile->find('all', array('conditions'=>array('CourseFile.course_id' => $course_id)));
+		$files = $this->paginate('CourseFile');
 		$this->set('files', $files);
 	}
 	
