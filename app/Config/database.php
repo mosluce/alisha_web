@@ -77,9 +77,9 @@ class DATABASE_CONFIG {
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
 			'host' => 'localhost',
-			'login' => 'c1_alisha',
+			'login' => 'ccmostw_alisha',
 			'password' => 'h89270as',
-			'database' => 'c1_alisha',
+			'database' => 'ccmostw_alisha',
 			'prefix' => '',
 			'encoding' => 'utf8',
 	);
